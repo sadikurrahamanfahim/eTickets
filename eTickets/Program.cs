@@ -1,4 +1,6 @@
 using eTickets.Data;
+using eTickets.Data.Services;
+using FluentAssertions.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -6,6 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var config = builder.Configuration;
+builder.Services.AddSingleton(config);
+
+var connectionString = config.GetConnectionString("DefaultConnectingString");
+builder.Services.AddDbContext<AppDBContext>(x => x.UseSqlServer(connectionString));
+builder.Services.AddScoped<IActorsService, ActorService>();
 
 var app = builder.Build();
 
@@ -28,4 +37,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+
+//Seeding Database
+AppDbInitializer.Seed(app);
 app.Run();
