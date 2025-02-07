@@ -10,24 +10,37 @@ namespace eTickets.Data.Services
         {
             _context = context;
         }
+
+        public async Task<IEnumerable<Actor>> GetAllAsync()
+        {
+            return await _context.Actors.ToListAsync();
+        }
+
+        public async Task<Actor> GetByIdAsync(int id)
+        {
+            return await _context.Actors.FirstOrDefaultAsync(a => a.ActorID == id);
+        }
+
         public async Task AddAsync(Actor actor)
         {
             await _context.Actors.AddAsync(actor);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task UpdateAsync(Actor actor)
         {
-            var result = await _context.Actors.FirstOrDefaultAsync(n => n.ActorID == id);
-            _context.Actors.Remove(result);
+            _context.Update(actor);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Actor> UpdateAsync(Actor Actor)
+        public async Task DeleteAsync(int id)
         {
-            _context.Update(Actor);
-            await _context.SaveChangesAsync();
-            return Actor;
+            var result = await _context.Actors.FirstOrDefaultAsync(n => n.ActorID == id);
+            if (result != null)
+            {
+                _context.Actors.Remove(result);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

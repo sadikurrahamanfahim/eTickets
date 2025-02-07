@@ -15,6 +15,8 @@ builder.Services.AddSingleton(config);
 var connectionString = config.GetConnectionString("DefaultConnectingString");
 builder.Services.AddDbContext<AppDBContext>(x => x.UseSqlServer(connectionString));
 builder.Services.AddScoped<IActorsService, ActorService>();
+builder.Services.AddScoped<IProducersService, ProducerService>();
+
 
 var app = builder.Build();
 
