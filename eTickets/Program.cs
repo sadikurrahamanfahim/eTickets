@@ -16,6 +16,7 @@ var connectionString = config.GetConnectionString("DefaultConnectingString");
 builder.Services.AddDbContext<AppDBContext>(x => x.UseSqlServer(connectionString));
 builder.Services.AddScoped<IActorsService, ActorService>();
 builder.Services.AddScoped<IProducersService, ProducerService>();
+builder.Services.AddScoped<ICinemaService, CinemaService>();
 
 
 var app = builder.Build();
