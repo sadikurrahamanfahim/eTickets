@@ -27,10 +27,10 @@ namespace eTickets.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("FullName,PRofilePictureUrl,Bio")] Producer producer)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(producer);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(producer);
+            //}
             await _service.AddAsync(producer);
             return RedirectToAction(nameof(Index));
         }
@@ -57,10 +57,10 @@ namespace eTickets.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, [Bind("ProducerID, FullName,PRofilePictureUrl,Bio")] Producer producer)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(producer);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(producer);
+            //}
 
             await _service.UpdateAsync(producer);
             return RedirectToAction(nameof(Index));

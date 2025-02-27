@@ -1,19 +1,19 @@
-﻿@model Actor
+﻿@model Producer
 
 @{
-    ViewData["Title"] = "Add a new Actor";
+    ViewData["Title"] = "Update Producer";
 }
 
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h1>Add New Actor</h1>
+            <h1>Update Producer</h1>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
-                <form asp-action="Create">
+                <form asp-action="Edit">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+                    <input type="hidden" value="@Model.ProducerID" name="ProducerID"/>
                     <div class="form-group text-center">
                         <img class="border-info rounded-circle" style="max-width: 150px" id="ProfilePicturePreview" />
                     </div>
@@ -35,8 +35,8 @@
                         <span asp-validation-for="Bio" class="text-danger"></span>
                     </div>
 
-                    <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-outline-success float-end" />
+                    <div class="form-group" style="margin-top: 20px">
+                        <input type="submit" value="Update" class="btn btn-outline-success float-end" />
                         <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
                     </div>
                 </form>
@@ -53,7 +53,7 @@
             output.src = $("#PRofilePictureUrl").val();
         })
 
-        $("#PRofilePictureUrl").on("change", function () {
+        $("#PRofilePictureUrl").on("chnage", function () {
             var output = document.getElementById('ProfilePicturePreview');
             output.src = $(this).val();
         })

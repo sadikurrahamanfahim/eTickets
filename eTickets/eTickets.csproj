@@ -24,4 +24,11 @@
     <Folder Include="Temp\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Producers\Edit.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
